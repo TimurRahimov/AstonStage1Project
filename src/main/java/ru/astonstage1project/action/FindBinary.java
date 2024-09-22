@@ -3,9 +3,9 @@ package ru.astonstage1project.action;
 import java.util.Collections;
 import java.util.Map;
 
-import ru.astonstage1project.models.Animal;
-import ru.astonstage1project.models.Barrel;
-import ru.astonstage1project.models.Human;
+import ru.astonstage1project.model.Animal;
+import ru.astonstage1project.model.Barrel;
+import ru.astonstage1project.model.Human;
 import ru.astonstage1project.storage.Storage;
 
 public class FindBinary implements Action {

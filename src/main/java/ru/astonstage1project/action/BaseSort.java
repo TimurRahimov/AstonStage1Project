@@ -7,7 +7,7 @@ import java.util.Map;
 import ru.astonstage1project.storage.Storage;
 
 public class BaseSort implements Action{
-	private Storage  stor;
+	private Storage stor;
 
 	public BaseSort(Storage stor) {
 		this.stor = stor;

@@ -1,4 +1,4 @@
-package ru.astonstage1project.models;
+package ru.astonstage1project.model;
 
 public class Animal implements Comparable<Animal> {
     private String species;
@@ -20,7 +20,7 @@ public class Animal implements Comparable<Animal> {
         return wool;
     }
 
-    static public AnimalBuilder getBuilder() {
+    public static AnimalBuilder getBuilder() {
         return new Animal().new AnimalBuilder();
     }
 
