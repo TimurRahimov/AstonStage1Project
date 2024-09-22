@@ -1,14 +1,18 @@
-package ru.astonstage1project.models;
+package ru.astonstage1project.model;
 
 public class Human implements Comparable<Human> {
-    String sex;
-    int age;
-    String surname;
+    private Sex sex;
+    private int age;
+    private String surname;
+
+    public enum Sex {
+        MALE, FEMALE
+    }
 
     private Human() {
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
@@ -37,7 +41,7 @@ public class Human implements Comparable<Human> {
         private HumanBuilder() {
         }
 
-        public HumanBuilder setSex(String sex) {
+        public HumanBuilder setSex(Sex sex) {
             Human.this.sex = sex;
             return this;
         }
