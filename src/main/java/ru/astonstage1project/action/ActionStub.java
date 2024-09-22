@@ -14,7 +14,6 @@ public class ActionStub implements Action {
 
     @Override
     public String doing(Map<String, String> params) {
-        System.out.println(params.toString());
         return params.toString();
     }
 }

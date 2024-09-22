@@ -26,6 +26,18 @@ public class Storage {
         this.humans = new ArrayList<>();
     }
 
+    public void add(Animal animal) {
+        animals.add(animal);
+    }
+
+    public void add(Barrel barrel) {
+        barrels.add(barrel);
+    }
+
+    public void add(Human human) {
+        humans.add(human);
+    }
+
     public void reset(String type) {
         switch (type) {
             case "animals" -> this.animals = new ArrayList<>();
