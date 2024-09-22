@@ -20,7 +20,7 @@ public class Barrel implements Comparable<Barrel> {
         return barrelMaterial;
     }
 
-    static BarrelBuilder getBuilder() {
+    public static BarrelBuilder getBuilder() {
         return new Barrel().new BarrelBuilder();
     }
 
