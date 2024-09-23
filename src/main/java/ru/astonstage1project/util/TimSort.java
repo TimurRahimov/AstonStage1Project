@@ -1,12 +1,12 @@
 package ru.astonstage1project.util;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 
 public class TimSort<T extends Comparable<T>> {
     static int RUN = 32;
 
+    /*
     @SuppressWarnings({"unchecked"})
 	private static <T> T[] createArrayT(int size, T defaultVal) {
 		T[] arr = (T[]) Array.newInstance(defaultVal.getClass(), size);
@@ -22,28 +22,34 @@ public class TimSort<T extends Comparable<T>> {
         }
         return arr;
     }
+    */
 
 
     // this function sorts array from left index to
     // to right index which is of size atmost THREASHOLD
-    private static <T extends Comparable<T>> void insertionSort(T[] arr, int left, int right) {
+    @SuppressWarnings({"unchecked"})
+    private static void insertionSort(Object[] arr, int left, int right) {
         for (int i = left + 1; i <= right; i++) {
-            T temp = arr[i];
+            Object tempI = arr[i];
             int j = i - 1;
-            while (j >= 0 && arr[j].compareTo(temp) > 0 && j >= left) {
+            Comparable tempJ = (Comparable) arr[j];
+            while (j >= 0 && tempJ.compareTo(tempI) > 0 && j >= left) {
                 arr[j + 1] = arr[j];
                 j--;
+                tempJ = j >= 0 ? (Comparable) arr[j] : null;
             }
-            arr[j + 1] = temp;
+            arr[j + 1] = tempI;
         }
     }
 
     // merge function merges the sorted runs
-    private static <T extends Comparable<T>> void merge(T[] arr, int left, int mid, int right) {
+    @SuppressWarnings({"unchecked"})
+    private static void merge(Object[] arr, int left, int mid, int right) {
 
-        int leftArrLen = mid - left + 1, rightArrLen = right - mid;
-		T[] leftArr = createArrayT(leftArrLen, null);
-		T[] rightArr = createArrayT(rightArrLen, null);
+        int leftArrLen = mid - left + 1;
+        int rightArrLen = right - mid;
+		Object[] leftArr = new Object[leftArrLen];
+		Object[] rightArr = new Object[rightArrLen];
 
 
         for (int x = 0; x < leftArrLen; x++) {
@@ -59,7 +65,8 @@ public class TimSort<T extends Comparable<T>> {
         int k = left;
 
         while (i < leftArrLen && j < rightArrLen) {
-            if (leftArr[i].compareTo(rightArr[j]) <= 0) {
+            Comparable tmp = (Comparable) leftArr[i];
+            if (tmp.compareTo(rightArr[j]) <= 0) {
                 arr[k] = leftArr[i];
                 i++;
             } else {
@@ -84,8 +91,9 @@ public class TimSort<T extends Comparable<T>> {
         }
     }
 
+    @SuppressWarnings({"unchecked"})
     public static <T extends Comparable<T>> void sort(List<T> list) {
-		T[] arr = listToArray(list);
+		Object[] arr = list.toArray();
 
         int length = list.size();
 
@@ -102,6 +110,13 @@ public class TimSort<T extends Comparable<T>> {
                 // perform merge sort
                 merge(arr, left, mid, right);
             }
+        }
+
+        // write sorted array to list
+        ListIterator<T> i = list.listIterator();
+        for (Object e : arr) {
+            i.next();
+            i.set((T) e);
         }
     }
 }
