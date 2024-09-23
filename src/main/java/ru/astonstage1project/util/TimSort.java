@@ -6,28 +6,9 @@ import java.util.ListIterator;
 public class TimSort<T extends Comparable<T>> {
     static int RUN = 32;
 
-    /*
-    @SuppressWarnings({"unchecked"})
-	private static <T> T[] createArrayT(int size, T defaultVal) {
-		T[] arr = (T[]) Array.newInstance(defaultVal.getClass(), size);
-		Arrays.fill(arr, defaultVal);
-		return arr;
-	}
-
-    private static <T> T[] listToArray(List<T> list) {
-        var len = list.size();
-        T[] arr = createArrayT(len, null);
-        for (int i = 0; i < len; i++) {
-            arr[i] = list.get(i);
-        }
-        return arr;
-    }
-    */
-
-
     // this function sorts array from left index to
     // to right index which is of size atmost THREASHOLD
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private static void insertionSort(Object[] arr, int left, int right) {
         for (int i = left + 1; i <= right; i++) {
             Object tempI = arr[i];
@@ -43,7 +24,7 @@ public class TimSort<T extends Comparable<T>> {
     }
 
     // merge function merges the sorted runs
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private static void merge(Object[] arr, int left, int mid, int right) {
 
         int leftArrLen = mid - left + 1;
