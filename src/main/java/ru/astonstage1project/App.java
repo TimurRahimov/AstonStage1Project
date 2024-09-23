@@ -1,13 +1,8 @@
 package ru.astonstage1project;
 
-import ru.astonstage1project.action.Action;
-import ru.astonstage1project.action.ActionType;
-import ru.astonstage1project.action.ActionStub;
-import ru.astonstage1project.action.BaseSort;
-import ru.astonstage1project.action.FindBinary;
+import ru.astonstage1project.action.*;
 import ru.astonstage1project.input.ConsoleUI;
 import ru.astonstage1project.storage.Storage;
-
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +24,7 @@ public class App {
         App app = new App();
 
         app.addAction(ActionType.FILE_DATA, new ActionStub(app.storage));
-        app.addAction(ActionType.RANDOM_DATA, new ActionStub(app.storage));
+        app.addAction(ActionType.RANDOM_DATA, new RandomGen(app.storage));
         app.addAction(ActionType.MANUAL_DATA, new ActionStub(app.storage));
         app.addAction(ActionType.SORT_BASE, new BaseSort(app.storage));
         app.addAction(ActionType.FIND, new FindBinary(app.storage));

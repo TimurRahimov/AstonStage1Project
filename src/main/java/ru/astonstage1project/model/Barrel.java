@@ -25,6 +25,15 @@ public class Barrel implements Comparable<Barrel> {
     }
 
     @Override
+    public String toString() {
+        return "Barrel{" +
+                "volume=" + volume +
+                ", storedMaterial='" + storedMaterial + '\'' +
+                ", barrelMaterial='" + barrelMaterial + '\'' +
+                '}';
+    }
+
+    @Override
     public int compareTo(Barrel other) {
         if (this.volume != other.volume)
             return Integer.compare(this.volume, other.volume);

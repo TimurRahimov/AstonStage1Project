@@ -69,7 +69,7 @@ public class ConsoleUI {
             return;
 
         Map<String, String> doingParams = new HashMap<>(Map.of("type", type, "count", String.valueOf(count)));
-        String response = actionsContainer.get(ActionType.FILE_DATA).doing(doingParams);
+        String response = actionsContainer.get(ActionType.RANDOM_DATA).doing(doingParams);
         System.out.println(response);
     }
 
