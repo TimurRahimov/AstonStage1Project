@@ -1,4 +1,4 @@
-package ru.astonstage1project.models;
+package ru.astonstage1project.model;
 
 public class Barrel implements Comparable<Barrel> {
     private int volume;

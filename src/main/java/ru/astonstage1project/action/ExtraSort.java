@@ -6,10 +6,10 @@ import java.util.Map;
 
 import ru.astonstage1project.storage.Storage;
 
-public class BaseSort implements Action{
-	private Storage stor;
+public class ExtraSort implements Action{
+	private Storage  stor;
 
-	public BaseSort(Storage stor) {
+	public ExtraSort(Storage stor) {
 		this.stor = stor;
 	}
 
@@ -19,7 +19,7 @@ public class BaseSort implements Action{
 		Collections.sort(stor.humans);
 	}
 
-	private <T> void timSort(List<T> list) {
+	private <T> void extraSort(List<T> list) {
 	}
 
 	@Override
