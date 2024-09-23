@@ -19,9 +19,9 @@ public class ConsoleDataRequester {
         String command = scanner.nextLine().strip().toLowerCase();
         if (Arrays.asList("animal", "barrel", "human").contains(command))
             return command;
-        else if (command.equals("break"))
+        else if (command.equals("q"))
             return null;
-        System.out.println("-- Вы ввели неверный тип объекта (для выхода введите break)");
+        System.out.println("-- Вы ввели неверный тип объекта (для выхода введите q)");
         return getType();
     }
 
@@ -30,19 +30,22 @@ public class ConsoleDataRequester {
         String command = scanner.nextLine().strip().toLowerCase();
         if (Arrays.asList("manual", "file", "random").contains(command))
             return command;
-        else if (command.equals("break"))
+        else if (command.equals("q"))
             return null;
-        System.out.println("-- Вы ввели неверный метод ввода (для выхода введите break)");
+        System.out.println("-- Вы ввели неверный метод ввода (для выхода введите q)");
         return getInputMethod();
     }
 
     public Integer getCount() {
         System.out.print("Введите количество объектов: ");
-        int count = Integer.parseInt(scanner.nextLine().strip().toLowerCase());
-        if (count > 0)
-            return count;
-        else if (count == -1)
-            return null;
+        String command = scanner.nextLine().strip().toLowerCase();
+        if (command.matches("[-+]?\\d+")) {
+            int count = Integer.parseInt(command);
+            if (count > 0)
+                return count;
+            else if (count == -1)
+                return null;
+        }
         System.out.println("-- Вы ввели неверное количество объектов (для выхода введите -1)");
         return getCount();
     }
@@ -52,10 +55,10 @@ public class ConsoleDataRequester {
         String command = scanner.nextLine().strip().toLowerCase();
         if (Files.isRegularFile(Paths.get(command)))
             return command;
-        else if (command.equals("break"))
+        else if (command.equals("q"))
             return null;
 
-        System.out.println("-- Указанный файл не существует  (для выхода введите break)");
+        System.out.println("-- Указанный файл не существует  (для выхода введите q)");
         return getFilePath();
     }
 

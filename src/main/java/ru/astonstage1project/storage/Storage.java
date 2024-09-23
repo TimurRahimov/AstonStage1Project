@@ -8,6 +8,7 @@ import ru.astonstage1project.model.Barrel;
 import ru.astonstage1project.model.Human;
 
 public class Storage {
+    public List<Object> objects;
     public List<Animal> animals;
     public List<Barrel> barrels;
     public List<Human> humans;
@@ -21,28 +22,39 @@ public class Storage {
     }
 
     public Storage() {
+        this.objects = new ArrayList<>();
         this.animals = new ArrayList<>();
         this.barrels = new ArrayList<>();
         this.humans = new ArrayList<>();
     }
 
     public void add(Animal animal) {
+        objects.add(animal);
         animals.add(animal);
     }
 
     public void add(Barrel barrel) {
+        objects.add(barrel);
         barrels.add(barrel);
     }
 
     public void add(Human human) {
+        objects.add(human);
         humans.add(human);
+    }
+
+    public void reset() {
+        this.objects.clear();
+        this.animals.clear();
+        this.barrels.clear();
+        this.humans.clear();
     }
 
     public void reset(String type) {
         switch (type) {
-            case "animals" -> this.animals = new ArrayList<>();
-            case "barrels" -> this.barrels = new ArrayList<>();
-            case "humans" -> this.humans = new ArrayList<>();
+            case "animals" -> this.animals.clear();
+            case "barrels" -> this.barrels.clear();
+            case "humans" -> this.humans.clear();
         }
     }
 }
