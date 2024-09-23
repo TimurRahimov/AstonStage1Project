@@ -23,6 +23,11 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod) {
+        if (!dataRequester.validateInputMethod(inputMethod)) {
+            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
+            return;
+        }
+
         String type = dataRequester.getType();
         if (type == null)
             return;
@@ -31,6 +36,11 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod, String type) {
+        if (!dataRequester.validateInputMethod(inputMethod) | !dataRequester.validateType(type)) {
+            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
+            return;
+        }
+
         switch (inputMethod) {
             case "manual" -> addManual(type);
             case "file" -> addFile(type);
@@ -39,6 +49,11 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod, String type, String count) {
+        if (!dataRequester.validateInputMethod(inputMethod) | !dataRequester.validateType(type)) {
+            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
+            return;
+        }
+
         if (!count.matches("[-+]?\\d+")) {
             return;
         }
@@ -60,11 +75,15 @@ public class ConsoleUI {
     }
 
     private void addManual(String type, int count) {
-        for (int i = 1; i <= count; i++) {
+        for (int i = 1; i <= count; ) {
             System.out.printf("=== Ввод данных %s №%d ===\n", type, i);
             Map<String, String> model = dataRequester.getModel(type);
             String response = actionsContainer.get(ActionType.MANUAL_DATA).doing(model);
-            System.out.println(response);
+            if (!response.isEmpty()) {
+                System.out.println(response);
+            } else {
+                i++;
+            }
         }
     }
 
@@ -119,6 +138,12 @@ public class ConsoleUI {
         System.out.println(response);
     }
 
+    private void print(String type) {
+        String response = actionsContainer.get(ActionType.PRINT_COLLECTION).doing(
+                new HashMap<>(Map.of("type", type)));
+        System.out.println(response);
+    }
+
     private void sort() {
         String response = actionsContainer.get(ActionType.SORT_BASE).doing(null);
         System.out.println(response);
@@ -145,7 +170,13 @@ public class ConsoleUI {
                 }
                 case "find" -> find();
                 case "help" -> help();
-                case "print" -> print();
+                case "print" -> {
+                    if (command_args.length == 1) {
+                        print();
+                    } else if (command_args.length == 2) {
+                        print(command_args[1]);
+                    }
+                }
                 case "sort" -> sort();
                 case "exit" -> {
                 }

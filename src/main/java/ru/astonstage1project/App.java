@@ -25,7 +25,7 @@ public class App {
 
         app.addAction(ActionType.FILE_DATA, new ActionStub(app.storage));
         app.addAction(ActionType.RANDOM_DATA, new RandomGen(app.storage));
-        app.addAction(ActionType.MANUAL_DATA, new ActionStub(app.storage));
+        app.addAction(ActionType.MANUAL_DATA, new ManualFeel(app.storage));
         app.addAction(ActionType.SORT_BASE, new BaseSort(app.storage));
         app.addAction(ActionType.FIND, new FindBinary(app.storage));
         app.addAction(ActionType.SORT_EXTRA, new BaseSort(app.storage));
