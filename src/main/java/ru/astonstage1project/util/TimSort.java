@@ -14,6 +14,15 @@ public class TimSort<T extends Comparable<T>> {
 		return arr;
 	}
 
+    private static <T> T[] listToArray(List<T> list) {
+        var len = list.size();
+        T[] arr = createArrayT(len, null);
+        for (int i = 0; i < len; i++) {
+            arr[i] = list.get(i);
+        }
+        return arr;
+    }
+
 
     // this function sorts array from left index to
     // to right index which is of size atmost THREASHOLD
@@ -76,10 +85,9 @@ public class TimSort<T extends Comparable<T>> {
     }
 
     public static <T extends Comparable<T>> void sort(List<T> list) {
-        @SuppressWarnings({"unchecked"})
-		T[] arr = (T[]) list.toArray();
+		T[] arr = listToArray(list);
 
-        int length = arr.length;
+        int length = list.size();
 
         // Sort individual subarrays of size THRESHOLD
         for (int i = 0; i < length; i += RUN) {

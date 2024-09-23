@@ -1,41 +1,47 @@
 package ru.astonstage1project;
 
-import ru.astonstage1project.action.Action;
-import ru.astonstage1project.action.ActionType;
-import ru.astonstage1project.action.ActionStub;
-import ru.astonstage1project.action.BaseSort;
-import ru.astonstage1project.action.FindBinary;
-import ru.astonstage1project.input.ConsoleUI;
+import ru.astonstage1project.model.Animal;
 import ru.astonstage1project.storage.Storage;
-
-
-import java.util.HashMap;
-import java.util.Map;
+import ru.astonstage1project.util.TimSort;
 
 public class App {
-    private final Map<ActionType, Action> actionsContainer = new HashMap<>();
-    private final Storage storage = new Storage();
+    private static final Storage storage = new Storage();
 
-    public void addAction(ActionType type, Action action) {
-        actionsContainer.put(type, action);
-    }
-
-    public void run() {
-        ConsoleUI consoleUI = new ConsoleUI(actionsContainer);
-        consoleUI.run();
-    }
 
     public static void main(String[] args) {
-        App app = new App();
+        storage.animals.add(Animal.getBuilder()
+                            .setSpecies("кот")
+                            .setEyesColor("зеленые")
+                            .setWool(true)
+                            .build());
+        storage.animals.add(Animal.getBuilder()
+                            .setSpecies("кошка")
+                            .setEyesColor("зеленые")
+                            .setWool(true)
+                            .build());
+        storage.animals.add(Animal.getBuilder()
+                            .setSpecies("собака")
+                            .setEyesColor("коричневые")
+                            .setWool(true)
+                            .build());
+        storage.animals.add(Animal.getBuilder()
+                            .setSpecies("египетский кот")
+                            .setEyesColor("зеленые")
+                            .setWool(false)
+                            .build());
 
-        app.addAction(ActionType.FILE_DATA, new ActionStub(app.storage));
-        app.addAction(ActionType.RANDOM_DATA, new ActionStub(app.storage));
-        app.addAction(ActionType.MANUAL_DATA, new ActionStub(app.storage));
-        app.addAction(ActionType.SORT_BASE, new BaseSort(app.storage));
-        app.addAction(ActionType.FIND, new FindBinary(app.storage));
-        app.addAction(ActionType.SORT_EXTRA, new BaseSort(app.storage));
+        System.out.println("до сортировки:");
+        for( Animal a : storage.animals) {
+            System.out.println(a.toString());
+        }
 
-        app.run();
+        TimSort.sort(storage.animals);
+        //Collections.sort(storage.animals);
+
+        System.out.println("после сортировки:");
+        for( Animal a : storage.animals) {
+            System.out.println(a.toString());
+        }
     }
 
 }
