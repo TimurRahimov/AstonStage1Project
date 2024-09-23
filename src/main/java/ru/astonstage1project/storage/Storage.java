@@ -38,6 +38,12 @@ public class Storage {
         humans.add(human);
     }
 
+    public void reset() {
+        this.animals = new ArrayList<>();
+        this.barrels = new ArrayList<>();
+        this.humans = new ArrayList<>();
+    }
+
     public void reset(String type) {
         switch (type) {
             case "animals" -> this.animals = new ArrayList<>();
