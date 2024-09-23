@@ -51,7 +51,6 @@ public class ConsoleUI {
             String response = actionsContainer.get(ActionType.MANUAL_DATA).doing(model);
             System.out.println(response);
         }
-
     }
 
     private void addFile(String type) {
@@ -97,7 +96,7 @@ public class ConsoleUI {
     }
 
     private void sort() {
-        String response = actionsContainer.get(ActionType.SORT_BASE).doing(new HashMap<>());
+        String response = actionsContainer.get(ActionType.SORT_BASE).doing(null);
         System.out.println(response);
     }
 
