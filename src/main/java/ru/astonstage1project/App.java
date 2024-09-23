@@ -29,6 +29,7 @@ public class App {
         app.addAction(ActionType.SORT_BASE, new BaseSort(app.storage));
         app.addAction(ActionType.FIND, new FindBinary(app.storage));
         app.addAction(ActionType.SORT_EXTRA, new BaseSort(app.storage));
+        app.addAction(ActionType.PRINT_COLLECTION, new PrintCollection(app.storage));
 
         app.run();
     }

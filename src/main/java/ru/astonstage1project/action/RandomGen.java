@@ -18,26 +18,26 @@ public class RandomGen implements Action {
     private static final String[] BarrelMaterials = new String[]{
             "Oak", "Beech", "Linden", "Aspen", "Aluminum", "Copper", "Steel"};
     private static final String[] Surnames = new String[]{
-            "Rakhimov", "Timoshenko", "Kharpov", "Smith", "Cooper", "Horne", "Palmer", "Johnson", "Brigs", "Packard"};
+            "Rakhimov", "Timoshenko", "Khrapov", "Smith", "Cooper", "Horne", "Palmer", "Johnson", "Brigs", "Packard"};
     private static final String[] Sex = new String[]{"MALE", "FEMALE"};
 
     private final Random random = new Random();
-    private Storage stor;
+    private final Storage storage;
 
-    public RandomGen(Storage stor) {
-        this.stor = stor;
+    public RandomGen(Storage storage) {
+        this.storage = storage;
     }
 
     private String generate(String type, int count) {
-        stor.reset();
+        storage.reset();
         for (int i = 0; i < count; i++) {
             switch (type) {
-                case "animal" -> stor.add(generateRandomAnimal());
-                case "barrel" -> stor.add(generateRandomBarrel());
-                case "human" -> stor.add(generateRandomHuman());
+                case "animal" -> storage.add(generateRandomAnimal());
+                case "barrel" -> storage.add(generateRandomBarrel());
+                case "human" -> storage.add(generateRandomHuman());
             }
         }
-        return stor.objects.toString() + "\n" + stor.animals.toString() + "\n" + stor.barrels.toString() + "\n" + stor.humans.toString();
+        return storage.objects.toString() + "\n" + storage.animals.toString() + "\n" + storage.barrels.toString() + "\n" + storage.humans.toString();
     }
 
     private Animal generateRandomAnimal() {
