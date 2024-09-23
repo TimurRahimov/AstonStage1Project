@@ -9,7 +9,6 @@ public class ConsoleUI {
     private final Scanner scanner = new Scanner(System.in);
     private final ConsoleDataRequester dataRequester = new ConsoleDataRequester(scanner);
     private final Map<ActionType, Action> actionsContainer;
-    private String command = "";
 
     public ConsoleUI(Map<ActionType, Action> actionsContainer) {
         this.actionsContainer = actionsContainer;
@@ -24,19 +23,31 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod) {
-        if (!Arrays.asList("manual", "file", "random").contains(inputMethod)) {
-            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
-            return;
-        }
-
         String type = dataRequester.getType();
         if (type == null)
             return;
 
+        add(inputMethod, type);
+    }
+
+    private void add(String inputMethod, String type) {
         switch (inputMethod) {
             case "manual" -> addManual(type);
             case "file" -> addFile(type);
             case "random" -> addRandom(type);
+        }
+    }
+
+    private void add(String inputMethod, String type, String count) {
+        if (!count.matches("[-+]?\\d+")) {
+            return;
+        }
+        int intCount = Integer.parseInt(count);
+
+        switch (inputMethod) {
+            case "manual" -> addManual(type, intCount);
+            case "file" -> addFile(type);
+            case "random" -> addRandom(type, intCount);
         }
     }
 
@@ -45,6 +56,10 @@ public class ConsoleUI {
         if (count == null)
             return;
 
+        addManual(type, count);
+    }
+
+    private void addManual(String type, int count) {
         for (int i = 1; i <= count; i++) {
             System.out.printf("=== Ввод данных %s №%d ===\n", type, i);
             Map<String, String> model = dataRequester.getModel(type);
@@ -68,8 +83,12 @@ public class ConsoleUI {
         if (count == null)
             return;
 
+        addRandom(type, count);
+    }
+
+    private void addRandom(String type, int count) {
         Map<String, String> doingParams = new HashMap<>(Map.of("type", type, "count", String.valueOf(count)));
-        String response = actionsContainer.get(ActionType.FILE_DATA).doing(doingParams);
+        String response = actionsContainer.get(ActionType.RANDOM_DATA).doing(doingParams);
         System.out.println(response);
     }
 
@@ -95,12 +114,18 @@ public class ConsoleUI {
         System.out.println("7. exit - Завершение программы");
     }
 
+    private void print() {
+        String response = actionsContainer.get(ActionType.PRINT_COLLECTION).doing(null);
+        System.out.println(response);
+    }
+
     private void sort() {
         String response = actionsContainer.get(ActionType.SORT_BASE).doing(null);
         System.out.println(response);
     }
 
     public void run() {
+        String command = "";
         while (!command.strip().equalsIgnoreCase("exit")) {
             System.out.print(">> ");
             command = scanner.nextLine().strip().toLowerCase();
@@ -110,12 +135,17 @@ public class ConsoleUI {
                 case "add" -> {
                     if (command_args.length == 1) {
                         add();
-                    } else {
+                    } else if (command_args.length == 2) {
                         add(command_args[1]);
+                    } else if (command_args.length == 3) {
+                        add(command_args[1], command_args[2]);
+                    } else if (command_args.length == 4) {
+                        add(command_args[1], command_args[2], command_args[3]);
                     }
                 }
                 case "find" -> find();
                 case "help" -> help();
+                case "print" -> print();
                 case "sort" -> sort();
                 case "exit" -> {
                 }

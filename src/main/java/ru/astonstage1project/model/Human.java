@@ -29,6 +29,15 @@ public class Human implements Comparable<Human> {
     }
 
     @Override
+    public String toString() {
+        return "Human{" +
+                "sex=" + sex +
+                ", age=" + age +
+                ", surname='" + surname + '\'' +
+                '}';
+    }
+
+    @Override
     public int compareTo(Human other) {
         if (this.age != other.age)
             return Integer.compare(this.age, other.age);

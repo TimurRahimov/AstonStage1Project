@@ -25,6 +25,15 @@ public class Animal implements Comparable<Animal> {
     }
 
     @Override
+    public String toString() {
+        return "Animal{" +
+                "wool=" + wool +
+                ", eyesColor='" + eyesColor + '\'' +
+                ", species='" + species + '\'' +
+                '}';
+    }
+
+    @Override
     public int compareTo(Animal other) {
         if (!this.species.equalsIgnoreCase(other.species))
             return this.species.compareTo(other.species);
