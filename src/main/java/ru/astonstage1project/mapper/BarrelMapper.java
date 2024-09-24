@@ -1,8 +1,9 @@
 package ru.astonstage1project.mapper;
 
-import ru.astonstage1project.model.Barrel;
-
 import java.util.Map;
+
+import ru.astonstage1project.exception.ValidationError;
+import ru.astonstage1project.model.Barrel;
 
 public class BarrelMapper {
 

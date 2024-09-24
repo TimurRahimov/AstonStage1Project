@@ -1,9 +1,10 @@
 package ru.astonstage1project.mapper;
 
-import ru.astonstage1project.model.Animal;
-
 import java.util.Arrays;
 import java.util.Map;
+
+import ru.astonstage1project.exception.ValidationError;
+import ru.astonstage1project.model.Animal;
 
 public class AnimalMapper {
 
