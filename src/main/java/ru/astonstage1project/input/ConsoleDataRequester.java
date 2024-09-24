@@ -1,8 +1,9 @@
 package ru.astonstage1project.input;
 
+import static ru.astonstage1project.validator.InputValidator.*;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ public class ConsoleDataRequester {
     public String getType() {
         System.out.print("Выберите тип объектов (animal, barrel, human): ");
         String command = scanner.nextLine().strip().toLowerCase();
-        if (Arrays.asList("animal", "barrel", "human").contains(command))
+        if (validateType(command))
             return command;
         else if (command.equals("q"))
             return null;
@@ -28,7 +29,7 @@ public class ConsoleDataRequester {
     public String getInputMethod() {
         System.out.print("Выберите метод ввода (manual, file, random): ");
         String command = scanner.nextLine().strip().toLowerCase();
-        if (Arrays.asList("manual", "file", "random").contains(command))
+        if (validateInputMethod(command))
             return command;
         else if (command.equals("q"))
             return null;
@@ -58,7 +59,7 @@ public class ConsoleDataRequester {
         else if (command.equals("q"))
             return null;
 
-        System.out.println("-- Указанный файл не существует  (для выхода введите q)");
+        System.out.println("-- Указанный файл не существует (для выхода введите q)");
         return getFilePath();
     }
 
@@ -83,7 +84,7 @@ public class ConsoleDataRequester {
         command = scanner.nextLine().strip();
         animal.put("eyesColor", command);
 
-        System.out.print("Введите наличие шерсти животного (true, false): ");
+        System.out.print("Введите наличие шерсти животного (true/false): ");
         command = scanner.nextLine().strip();
         animal.put("wool", command);
 
@@ -94,7 +95,7 @@ public class ConsoleDataRequester {
         Map<String, String> barrel = new HashMap<>();
         barrel.put("type", "barrel");
 
-        System.out.print("Введите объем бочки: ");
+        System.out.print("Введите объем бочки (от 1 до 1000): ");
         String command = scanner.nextLine().strip();
         barrel.put("volume", command);
 
@@ -113,11 +114,11 @@ public class ConsoleDataRequester {
         Map<String, String> human = new HashMap<>();
         human.put("type", "human");
 
-        System.out.print("Введите пол человека: ");
+        System.out.print("Введите пол человека (male/female): ");
         String command = scanner.nextLine().strip();
         human.put("sex", command);
 
-        System.out.print("Введите возраст человека: ");
+        System.out.print("Введите возраст человека (от 1 до 100): ");
         command = scanner.nextLine().strip();
         human.put("age", command);
 

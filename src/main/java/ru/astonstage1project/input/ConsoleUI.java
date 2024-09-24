@@ -1,9 +1,13 @@
 package ru.astonstage1project.input;
 
+import static ru.astonstage1project.validator.InputValidator.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 import ru.astonstage1project.action.Action;
 import ru.astonstage1project.action.ActionType;
-
-import java.util.*;
 
 public class ConsoleUI {
     private final Scanner scanner = new Scanner(System.in);
@@ -23,6 +27,11 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod) {
+        if (!validateInputMethod(inputMethod)) {
+            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
+            return;
+        }
+
         String type = dataRequester.getType();
         if (type == null)
             return;
@@ -31,6 +40,11 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod, String type) {
+        if (!validateInputMethod(inputMethod) | !validateType(type)) {
+            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
+            return;
+        }
+
         switch (inputMethod) {
             case "manual" -> addManual(type);
             case "file" -> addFile(type);
@@ -39,6 +53,11 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod, String type, String count) {
+        if (!validateInputMethod(inputMethod) | !validateType(type)) {
+            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
+            return;
+        }
+
         if (!count.matches("[-+]?\\d+")) {
             return;
         }
@@ -60,11 +79,15 @@ public class ConsoleUI {
     }
 
     private void addManual(String type, int count) {
-        for (int i = 1; i <= count; i++) {
+        for (int i = 1; i <= count; ) {
             System.out.printf("=== Ввод данных %s №%d ===\n", type, i);
             Map<String, String> model = dataRequester.getModel(type);
             String response = actionsContainer.get(ActionType.MANUAL_DATA).doing(model);
-            System.out.println(response);
+            if (!response.isEmpty()) {
+                System.out.println(response);
+            } else {
+                i++;
+            }
         }
     }
 
@@ -105,17 +128,27 @@ public class ConsoleUI {
 
     private void help() {
         System.out.println("=== Список команд ===");
-        System.out.println("1. add - Общая команда добавления коллекций");
-        System.out.println("2. add manual - Добавить коллекцию вручную");
-        System.out.println("3. add file - Добавить коллекцию из файла");
-        System.out.println("4. add random - Добавить коллекцию со случайными значениями");
-        System.out.println("5. find - Найти элемент в отсортированной коллекции");
-        System.out.println("6. sort - Отсортировать коллекцию");
-        System.out.println("7. exit - Завершение программы");
+        System.out.println("add - Общая команда добавления коллекций");
+        System.out.println("add manual - Добавить коллекцию вручную");
+        System.out.println("add manual <type> - Добавить коллекцию определённого типа вручную");
+        System.out.println("add manual <type> <count> - Добавить коллекцию определённого размера и типа вручную");
+        System.out.println("add file - Добавить коллекцию из файла");
+        System.out.println("add random - Добавить коллекцию со случайными значениями");
+        System.out.println("find - Найти элемент в отсортированной коллекции");
+        System.out.println("print - Вывести коллекцию в консоль");
+        System.out.println("print <type> - Вывести коллекцию определённого типа в консоль");
+        System.out.println("sort - Отсортировать коллекцию");
+        System.out.println("exit - Завершение программы");
     }
 
     private void print() {
         String response = actionsContainer.get(ActionType.PRINT_COLLECTION).doing(null);
+        System.out.println(response);
+    }
+
+    private void print(String type) {
+        String response = actionsContainer.get(ActionType.PRINT_COLLECTION).doing(
+                new HashMap<>(Map.of("type", type)));
         System.out.println(response);
     }
 
@@ -126,6 +159,7 @@ public class ConsoleUI {
 
     public void run() {
         String command = "";
+        help();
         while (!command.strip().equalsIgnoreCase("exit")) {
             System.out.print(">> ");
             command = scanner.nextLine().strip().toLowerCase();
@@ -145,7 +179,13 @@ public class ConsoleUI {
                 }
                 case "find" -> find();
                 case "help" -> help();
-                case "print" -> print();
+                case "print" -> {
+                    if (command_args.length == 1) {
+                        print();
+                    } else if (command_args.length == 2) {
+                        print(command_args[1]);
+                    }
+                }
                 case "sort" -> sort();
                 case "exit" -> {
                 }
