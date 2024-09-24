@@ -19,7 +19,7 @@ public class AnimalMapper {
 
         String woolString = map.get("wool").toLowerCase();
         if (!Arrays.asList("true", "false").contains(woolString))
-            throw new ValidationError("Некорректный признак наличия шерсти (необходимо: true или false)");
+            throw new ValidationError("Некорректный признак наличия шерсти (необходимо: true/false)");
 
         boolean wool = Boolean.parseBoolean(woolString);
         animalBuilder.setWool(wool);
