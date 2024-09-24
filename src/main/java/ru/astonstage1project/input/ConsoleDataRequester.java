@@ -84,7 +84,7 @@ public class ConsoleDataRequester {
         command = scanner.nextLine().strip();
         animal.put("eyesColor", command);
 
-        System.out.print("Введите наличие шерсти животного (true или false): ");
+        System.out.print("Введите наличие шерсти животного (true/false): ");
         command = scanner.nextLine().strip();
         animal.put("wool", command);
 
@@ -114,7 +114,7 @@ public class ConsoleDataRequester {
         Map<String, String> human = new HashMap<>();
         human.put("type", "human");
 
-        System.out.print("Введите пол человека (male или female): ");
+        System.out.print("Введите пол человека (male/female): ");
         String command = scanner.nextLine().strip();
         human.put("sex", command);
 

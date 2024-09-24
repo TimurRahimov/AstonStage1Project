@@ -13,7 +13,7 @@ public class HumanMapper {
 
         String sexString = map.get("sex").toUpperCase();
         if (!Arrays.asList("MALE", "FEMALE").contains(sexString))
-            throw new ValidationError("Некорректный пол человека (необходимо: male или female)");
+            throw new ValidationError("Некорректный пол человека (необходимо: male/female)");
 
         Human.Sex sex = Human.Sex.valueOf(sexString);
         humanBuilder.setSex(sex);
