@@ -1,4 +1,4 @@
-package ru.astonstage1project.mapper;
+package ru.astonstage1project.exception;
 
 public class ValidationError extends Exception {
 

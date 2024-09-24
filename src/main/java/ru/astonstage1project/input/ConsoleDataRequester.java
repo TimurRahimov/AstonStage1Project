@@ -1,8 +1,9 @@
 package ru.astonstage1project.input;
 
+import static ru.astonstage1project.validator.InputValidator.*;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,14 +13,6 @@ public class ConsoleDataRequester {
 
     public ConsoleDataRequester(Scanner scanner) {
         this.scanner = scanner;
-    }
-
-    public boolean validateType(String type) {
-        return (Arrays.asList("animal", "barrel", "human").contains(type));
-    }
-
-    public boolean validateInputMethod(String inputMethod) {
-        return (Arrays.asList("manual", "file", "random").contains(inputMethod));
     }
 
     public String getType() {

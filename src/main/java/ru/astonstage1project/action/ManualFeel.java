@@ -2,7 +2,10 @@ package ru.astonstage1project.action;
 
 import java.util.Map;
 
-import ru.astonstage1project.mapper.*;
+import ru.astonstage1project.exception.ValidationError;
+import ru.astonstage1project.mapper.AnimalMapper;
+import ru.astonstage1project.mapper.BarrelMapper;
+import ru.astonstage1project.mapper.HumanMapper;
 import ru.astonstage1project.storage.Storage;
 
 public class ManualFeel implements Action {

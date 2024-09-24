@@ -1,9 +1,13 @@
 package ru.astonstage1project.input;
 
+import static ru.astonstage1project.validator.InputValidator.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 import ru.astonstage1project.action.Action;
 import ru.astonstage1project.action.ActionType;
-
-import java.util.*;
 
 public class ConsoleUI {
     private final Scanner scanner = new Scanner(System.in);
@@ -23,7 +27,7 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod) {
-        if (!dataRequester.validateInputMethod(inputMethod)) {
+        if (!validateInputMethod(inputMethod)) {
             System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
             return;
         }
@@ -36,7 +40,7 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod, String type) {
-        if (!dataRequester.validateInputMethod(inputMethod) | !dataRequester.validateType(type)) {
+        if (!validateInputMethod(inputMethod) | !validateType(type)) {
             System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
             return;
         }
@@ -49,7 +53,7 @@ public class ConsoleUI {
     }
 
     private void add(String inputMethod, String type, String count) {
-        if (!dataRequester.validateInputMethod(inputMethod) | !dataRequester.validateType(type)) {
+        if (!validateInputMethod(inputMethod) | !validateType(type)) {
             System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
             return;
         }
