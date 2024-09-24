@@ -2,6 +2,9 @@ package ru.astonstage1project.util;
 
 import java.util.List;
 
+/**
+ * Search class implements binary search algorithm.
+*/
 public class Search<T extends Comparable<T>> {
 	public static <T> int binary(List<T> list, T target) {
 		int start = 0;

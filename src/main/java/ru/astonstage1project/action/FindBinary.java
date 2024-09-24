@@ -1,12 +1,12 @@
 package ru.astonstage1project.action;
 
-import java.util.Collections;
 import java.util.Map;
 
 import ru.astonstage1project.model.Animal;
 import ru.astonstage1project.model.Barrel;
 import ru.astonstage1project.model.Human;
 import ru.astonstage1project.storage.Storage;
+import ru.astonstage1project.util.Search;
 
 public class FindBinary implements Action {
     private Storage stor;
@@ -26,9 +26,7 @@ public class FindBinary implements Action {
                         .setEyesColor(params.get("eyesColor"))
                         .setWool(Boolean.parseBoolean(params.get("wool")))
                         .build();
-                result = Collections.binarySearch(stor.animals, animal, (x, y) -> {
-                    return x.toString().compareTo(y.toString());
-                });
+                result = Search.binary(stor.animals, animal);
                 if (result >= 0) {
                     return "find animal" + stor.animals.get(result).toString();
                 }
@@ -39,9 +37,7 @@ public class FindBinary implements Action {
                         .setStoredMaterial(params.get("storedMaterial"))
                         .setBarrelMaterial(params.get("barrelMaterial"))
                         .build();
-                result = Collections.binarySearch(stor.barrels, barrel, (x, y) -> {
-                    return x.toString().compareTo(y.toString());
-                });
+                result = Search.binary(stor.barrels, barrel);
                 if (result >= 0) {
                     return "find barrel" + stor.barrels.get(result).toString();
                 }
@@ -52,9 +48,7 @@ public class FindBinary implements Action {
                         .setAge(Integer.parseInt(params.get("age")))
                         .setSurname(params.get("search"))
                         .build();
-                result = Collections.binarySearch(stor.humans, human, (x, y) -> {
-                    return x.toString().compareTo(y.toString());
-                });
+                result = Search.binary(stor.humans, human);
                 if (result >= 0) {
                     return "find barrel" + stor.humans.get(result).toString();
                 }

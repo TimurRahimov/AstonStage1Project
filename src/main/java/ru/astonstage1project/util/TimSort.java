@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * TimSort<T extends Comparable<T>> class implements
+ * TimSort class implements
  * TimSort algorithm. This is hybrid algorithm, which
  * divide input list to parts equals "magic" size - 32.
  * After it, it sorts parts with insertion sort algorithm.
