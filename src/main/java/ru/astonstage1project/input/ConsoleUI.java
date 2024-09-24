@@ -128,13 +128,17 @@ public class ConsoleUI {
 
     private void help() {
         System.out.println("=== Список команд ===");
-        System.out.println("1. add - Общая команда добавления коллекций");
-        System.out.println("2. add manual - Добавить коллекцию вручную");
-        System.out.println("3. add file - Добавить коллекцию из файла");
-        System.out.println("4. add random - Добавить коллекцию со случайными значениями");
-        System.out.println("5. find - Найти элемент в отсортированной коллекции");
-        System.out.println("6. sort - Отсортировать коллекцию");
-        System.out.println("7. exit - Завершение программы");
+        System.out.println("add - Общая команда добавления коллекций");
+        System.out.println("add manual - Добавить коллекцию вручную");
+        System.out.println("add manual <type> - Добавить коллекцию определённого типа вручную");
+        System.out.println("add manual <type> <count> - Добавить коллекцию определённого размера и типа вручную");
+        System.out.println("add file - Добавить коллекцию из файла");
+        System.out.println("add random - Добавить коллекцию со случайными значениями");
+        System.out.println("find - Найти элемент в отсортированной коллекции");
+        System.out.println("print - Вывести коллекцию в консоль");
+        System.out.println("print <type> - Вывести коллекцию определённого типа в консоль");
+        System.out.println("sort - Отсортировать коллекцию");
+        System.out.println("exit - Завершение программы");
     }
 
     private void print() {
@@ -155,6 +159,7 @@ public class ConsoleUI {
 
     public void run() {
         String command = "";
+        help();
         while (!command.strip().equalsIgnoreCase("exit")) {
             System.out.print(">> ");
             command = scanner.nextLine().strip().toLowerCase();
