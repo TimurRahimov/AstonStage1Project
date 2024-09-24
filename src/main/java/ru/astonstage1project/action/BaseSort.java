@@ -1,10 +1,9 @@
 package ru.astonstage1project.action;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 import ru.astonstage1project.storage.Storage;
+import ru.astonstage1project.util.TimSort;
 
 public class BaseSort implements Action{
 	private Storage stor;
@@ -14,12 +13,9 @@ public class BaseSort implements Action{
 	}
 
 	private void sort() {
-		Collections.sort(stor.animals);
-		Collections.sort(stor.barrels);
-		Collections.sort(stor.humans);
-	}
-
-	private <T> void timSort(List<T> list) {
+		TimSort.sort(stor.animals);
+		TimSort.sort(stor.barrels);
+		TimSort.sort(stor.humans);
 	}
 
 	@Override
