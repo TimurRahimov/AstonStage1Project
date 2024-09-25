@@ -29,7 +29,6 @@ public class RandomGen implements Action {
     }
 
     private String generate(String type, int count) {
-        storage.reset();
         for (int i = 0; i < count; i++) {
             switch (type) {
                 case "animal" -> storage.add(generateRandomAnimal());
@@ -37,7 +36,7 @@ public class RandomGen implements Action {
                 case "human" -> storage.add(generateRandomHuman());
             }
         }
-        return storage.objects.toString() + "\n" + storage.animals.toString() + "\n" + storage.barrels.toString() + "\n" + storage.humans.toString();
+        return "Успешно сгенерировано " + count + " объектов типа " + type;
     }
 
     private Animal generateRandomAnimal() {

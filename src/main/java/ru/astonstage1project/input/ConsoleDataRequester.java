@@ -2,12 +2,16 @@ package ru.astonstage1project.input;
 
 import static ru.astonstage1project.validator.InputValidator.*;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * The {@code ConsoleDataRequester} class
+ * implements the execution and processing
+ * of small repeatable console operations when
+ * interacting with the user
+ */
 public class ConsoleDataRequester {
     private final Scanner scanner;
 
@@ -54,7 +58,7 @@ public class ConsoleDataRequester {
     public String getFilePath() {
         System.out.print("Введите путь к файлу: ");
         String command = scanner.nextLine().strip().toLowerCase();
-        if (Files.isRegularFile(Paths.get(command)))
+        if (validateFilePath(command))
             return command;
         else if (command.equals("q"))
             return null;

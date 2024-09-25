@@ -32,10 +32,10 @@ public class PrintCollection implements Action {
     @Override
     public String doing(Map<String, String> params) {
         return (params != null) ? switch (params.get("type")) {
-            case "animal" -> printObjects(Arrays.asList(this.storage.animals.toArray()));
-            case "barrel" -> printObjects(Arrays.asList(this.storage.barrels.toArray()));
-            case "human" -> printObjects(Arrays.asList(this.storage.humans.toArray()));
-            default -> null;
-        } : printObjects(this.storage.objects);
+            case "animal", "animals" -> printObjects(Arrays.asList(this.storage.animals.toArray()));
+            case "barrel", "barrels" -> printObjects(Arrays.asList(this.storage.barrels.toArray()));
+            case "human", "humans" -> printObjects(Arrays.asList(this.storage.humans.toArray()));
+            default -> "=== Такой коллекции не существует ===";
+        } : "";
     }
 }
