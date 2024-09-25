@@ -36,7 +36,7 @@ public class RandomGen implements Action {
                 case "human" -> storage.add(generateRandomHuman());
             }
         }
-        return "";
+        return "Успешно сгенерировано " + count + " объектов типа " + type;
     }
 
     private Animal generateRandomAnimal() {

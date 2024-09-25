@@ -2,8 +2,6 @@ package ru.astonstage1project.input;
 
 import static ru.astonstage1project.validator.InputValidator.*;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -60,7 +58,7 @@ public class ConsoleDataRequester {
     public String getFilePath() {
         System.out.print("Введите путь к файлу: ");
         String command = scanner.nextLine().strip().toLowerCase();
-        if (Files.isRegularFile(Paths.get(command)))
+        if (validateFilePath(command))
             return command;
         else if (command.equals("q"))
             return null;
