@@ -31,8 +31,6 @@ public class LoadFromFile implements Action {
 
         if (extension.equals("json")) {
             storage.add(loadJSON(type, path));
-        } else if (extension.equals("csv")) {
-            loadCSV(type, path);
         }
     }
 
@@ -57,10 +55,6 @@ public class LoadFromFile implements Action {
         } catch (IOException e) {
             throw new ValidationError("Ошибка чтения файла");
         }
-    }
-
-    private void loadCSV(String type, String path) {
-
     }
 
     @Override
