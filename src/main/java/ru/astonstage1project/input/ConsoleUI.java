@@ -183,8 +183,11 @@ public class ConsoleUI {
     }
 
     private void print() {
-        String response = actionsContainer.get(ActionType.PRINT_COLLECTION).doing(null);
-        System.out.println(response);
+        String type = dataRequester.getType();
+        if (type == null)
+            return;
+
+        print(type);
     }
 
     private void print(String type) {
