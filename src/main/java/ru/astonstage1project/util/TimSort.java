@@ -10,7 +10,7 @@ import java.util.ListIterator;
  * After it, it sorts parts with insertion sort algorithm.
  * Returned sorted parts after it is merging by merge algorithm.
 */
-public class TimSort<T extends Comparable<T>> {
+public class TimSort {
     static int RUN = 32;
 
     // this function sorts array from left index to

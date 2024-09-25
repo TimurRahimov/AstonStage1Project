@@ -6,16 +6,16 @@ import ru.astonstage1project.storage.Storage;
 import ru.astonstage1project.util.TimSort;
 
 public class BaseSort implements Action{
-	private Storage stor;
+	private Storage storage;
 
-	public BaseSort(Storage stor) {
-		this.stor = stor;
+	public BaseSort(Storage storage) {
+		this.storage = storage;
 	}
 
 	private void sort() {
-		TimSort.sort(stor.animals);
-		TimSort.sort(stor.barrels);
-		TimSort.sort(stor.humans);
+		TimSort.sort(storage.animals);
+		TimSort.sort(storage.barrels);
+		TimSort.sort(storage.humans);
 	}
 
 	@Override

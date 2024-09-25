@@ -1,15 +1,15 @@
 package ru.astonstage1project.action;
 
 
-import ru.astonstage1project.storage.Storage;
-
 import java.util.Map;
 
-public class ActionStub implements Action {
-    private Storage stor;
+import ru.astonstage1project.storage.Storage;
 
-    public ActionStub(Storage stor) {
-        this.stor = stor;
+public class ActionStub implements Action {
+    private Storage storage;
+
+    public ActionStub(Storage storage) {
+        this.storage = storage;
     }
 
     @Override

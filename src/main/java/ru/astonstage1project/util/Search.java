@@ -5,8 +5,8 @@ import java.util.List;
 /**
  * Search class implements binary search algorithm.
 */
-public class Search<T extends Comparable<T>> {
-	public static <T> int binary(List<T> list, T target) {
+public class Search {
+	public static <T extends Comparable<T>> int binary(List<T> list, T target) {
 		int start = 0;
 		int end = list.size() - 1;
 
@@ -18,8 +18,7 @@ public class Search<T extends Comparable<T>> {
 
 			int mid = start + ((end - start) / 2);
 
-			@SuppressWarnings({"unchecked"})
-			Comparable<T> midVal = (Comparable<T>) list.get(mid);
+			T midVal = list.get(mid);
 
 			if (midVal.compareTo(target) > 0) {
 				end = mid - 1;

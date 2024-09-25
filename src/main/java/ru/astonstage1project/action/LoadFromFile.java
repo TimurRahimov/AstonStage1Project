@@ -5,10 +5,10 @@ import java.util.Map;
 import ru.astonstage1project.storage.Storage;
 
 public class LoadFromFile implements Action {
-	private Storage stor;
+	private Storage storage;
 
-	public LoadFromFile(Storage stor) {
-		this.stor = stor;
+	public LoadFromFile(Storage storage) {
+		this.storage = storage;
 	}
 
 	private String load(String fileName, String format) {
