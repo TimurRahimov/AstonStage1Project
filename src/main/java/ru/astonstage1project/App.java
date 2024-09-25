@@ -31,6 +31,7 @@ public class App {
         app.addAction(ActionType.SORT_EXTRA, new BaseSort(app.storage));
         app.addAction(ActionType.PRINT_COLLECTION, new PrintCollection(app.storage));
         app.addAction(ActionType.RESET_COLLECTION, new ResetAction(app.storage));
+        app.addAction(ActionType.SHUFFLE_COLLECTION, new ShuffleCollection(app.storage));
 
         app.run();
     }

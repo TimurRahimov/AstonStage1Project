@@ -178,7 +178,9 @@ public class ConsoleUI {
         System.out.println("find - Найти элемент в отсортированной коллекции");
         System.out.println("print - Вывести коллекцию в консоль");
         System.out.println("print <type> - Вывести коллекцию определённого типа в консоль");
+        System.out.println("reset - Очистить коллекцию");
         System.out.println("sort - Отсортировать коллекцию");
+        System.out.println("shuffle - Перемешать коллекцию");
         System.out.println("exit - Завершение программы");
     }
 
@@ -191,6 +193,11 @@ public class ConsoleUI {
     }
 
     private void print(String type) {
+        if (!validateType(type)) {
+            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
+            return;
+        }
+
         String response = actionsContainer.get(ActionType.PRINT_COLLECTION).doing(
                 new HashMap<>(Map.of("type", type)));
         System.out.println(response);
@@ -205,12 +212,35 @@ public class ConsoleUI {
     }
 
     private void reset(String type) {
+        if (!validateType(type)) {
+            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
+            return;
+        }
+
         String response = actionsContainer.get(ActionType.RESET_COLLECTION).doing(new HashMap<>(Map.of("type", type)));
         System.out.println(response);
     }
 
     private void sort() {
         String response = actionsContainer.get(ActionType.SORT_BASE).doing(null);
+        System.out.println(response);
+    }
+
+    private void shuffle() {
+        String type = dataRequester.getType();
+        if (type == null)
+            return;
+
+        shuffle(type);
+    }
+
+    private void shuffle(String type) {
+        if (!validateType(type)) {
+            System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
+            return;
+        }
+
+        String response = actionsContainer.get(ActionType.SHUFFLE_COLLECTION).doing(new HashMap<>(Map.of("type", type)));
         System.out.println(response);
     }
 
@@ -251,6 +281,13 @@ public class ConsoleUI {
                     }
                 }
                 case "sort" -> sort();
+                case "shuffle" -> {
+                    if (command_args.length == 1) {
+                        shuffle();
+                    } else if (command_args.length == 2) {
+                        shuffle(command_args[1]);
+                    }
+                }
                 case "exit" -> {
                 }
                 default -> System.out.println("-- Вы ввели неверную команду " +
