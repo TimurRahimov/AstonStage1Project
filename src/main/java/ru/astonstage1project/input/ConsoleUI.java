@@ -156,6 +156,11 @@ public class ConsoleUI {
         System.out.println(response);
     }
 
+    private void extra() {
+        String response = actionsContainer.get(ActionType.SORT_EXTRA).doing(null);
+        System.out.println(response);
+    }
+
     private void find() {
         String type = dataRequester.getType();
         if (type == null)
@@ -165,23 +170,6 @@ public class ConsoleUI {
         Map<String, String> model = dataRequester.getModel(type);
         String response = actionsContainer.get(ActionType.FIND).doing(model);
         System.out.println(response);
-    }
-
-    private void help() {
-        System.out.println("=== Список команд ===");
-        System.out.println("add - Общая команда добавления коллекций");
-        System.out.println("add manual - Добавить коллекцию вручную");
-        System.out.println("add manual <type> - Добавить коллекцию определённого типа вручную");
-        System.out.println("add manual <type> <count> - Добавить коллекцию определённого размера и типа вручную");
-        System.out.println("add file - Добавить коллекцию из файла");
-        System.out.println("add random - Добавить коллекцию со случайными значениями");
-        System.out.println("find - Найти элемент в отсортированной коллекции");
-        System.out.println("print - Вывести коллекцию в консоль");
-        System.out.println("print <type> - Вывести коллекцию определённого типа в консоль");
-        System.out.println("reset - Очистить коллекцию");
-        System.out.println("sort - Отсортировать коллекцию");
-        System.out.println("shuffle - Перемешать коллекцию");
-        System.out.println("exit - Завершение программы");
     }
 
     private void print() {
@@ -244,6 +232,24 @@ public class ConsoleUI {
         System.out.println(response);
     }
 
+    private void help() {
+        System.out.println("=== Список команд ===");
+        System.out.println("add - Общая команда добавления коллекций");
+        System.out.println("add manual - Добавить коллекцию вручную");
+        System.out.println("add manual <type> - Добавить коллекцию определённого типа вручную");
+        System.out.println("add manual <type> <count> - Добавить коллекцию определённого размера и типа вручную");
+        System.out.println("add file - Добавить коллекцию из файла");
+        System.out.println("add random - Добавить коллекцию со случайными значениями");
+        System.out.println("extra - Дополнительное задание");
+        System.out.println("find - Найти элемент в отсортированной коллекции");
+        System.out.println("print - Вывести коллекцию в консоль");
+        System.out.println("print <type> - Вывести коллекцию определённого типа в консоль");
+        System.out.println("reset - Очистить коллекцию");
+        System.out.println("sort - Отсортировать коллекцию");
+        System.out.println("shuffle - Перемешать коллекцию");
+        System.out.println("exit - Завершение программы");
+    }
+
     public void run() {
         String command = "";
         help();
@@ -264,6 +270,7 @@ public class ConsoleUI {
                         add(command_args[1], command_args[2], command_args[3]);
                     }
                 }
+                case "extra" -> extra();
                 case "find" -> find();
                 case "help" -> help();
                 case "print" -> {

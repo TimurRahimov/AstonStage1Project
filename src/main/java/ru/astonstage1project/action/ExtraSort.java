@@ -6,7 +6,7 @@ import java.util.Map;
 import ru.astonstage1project.storage.Storage;
 
 public class ExtraSort implements Action{
-	private Storage  storage;
+	private final Storage storage;
 
 	public ExtraSort(Storage storage) {
 		this.storage = storage;
