@@ -52,9 +52,11 @@ public class Storage {
 
     public void reset(String type) {
         switch (type) {
-            case "animals" -> this.animals.clear();
-            case "barrels" -> this.barrels.clear();
-            case "humans" -> this.humans.clear();
+            case "all" -> this.reset();
+            case "object", "objects" -> this.objects.clear();
+            case "animal", "animals" -> this.animals.clear();
+            case "barrel", "barrels" -> this.barrels.clear();
+            case "human", "humans" -> this.humans.clear();
         }
     }
 }

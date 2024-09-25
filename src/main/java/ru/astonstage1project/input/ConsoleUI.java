@@ -9,15 +9,37 @@ import java.util.Scanner;
 import ru.astonstage1project.action.Action;
 import ru.astonstage1project.action.ActionType;
 
+/**
+ * The {@code ConsoleUI} class implements
+ * console interaction with the user.<br>
+ * This class contains the run() method,
+ * which polls the user in a loop, as
+ * well as methods for processing user
+ * commands. <br>
+ * When processing commands, the required
+ * {@code Action} are called. <br>
+ * The container with {@code Action}s is
+ * passed in the constructor.
+ */
 public class ConsoleUI {
+
+    // User poll Scanner
     private final Scanner scanner = new Scanner(System.in);
+
+    // Data requester in console
     private final ConsoleDataRequester dataRequester = new ConsoleDataRequester(scanner);
+
+    // Map of added actions with a key in the form of action type
     private final Map<ActionType, Action> actionsContainer;
 
     public ConsoleUI(Map<ActionType, Action> actionsContainer) {
         this.actionsContainer = actionsContainer;
     }
 
+    /**
+     * This method {@code add()} creates a chain
+     * of user polls to add models to the program
+     */
     private void add() {
         String inputMethod = dataRequester.getInputMethod();
         if (inputMethod == null)
@@ -26,6 +48,12 @@ public class ConsoleUI {
         add(inputMethod);
     }
 
+    /**
+     * This method {@code add()} creates a chain
+     * of user polls to add models to the program
+     *
+     * @param inputMethod Input method
+     */
     private void add(String inputMethod) {
         if (!validateInputMethod(inputMethod)) {
             System.out.println("-- Вы ввели неверную команду (для подсказки введите help, для выхода - exit)");
@@ -70,6 +98,12 @@ public class ConsoleUI {
         }
     }
 
+    /**
+     * This method {@code addManual(String type)} creates a chain
+     * of user polls to manually add models to the program
+     *
+     * @param type Type of models to be added
+     */
     private void addManual(String type) {
         Integer count = dataRequester.getCount();
         if (count == null)
@@ -78,6 +112,13 @@ public class ConsoleUI {
         addManual(type, count);
     }
 
+    /**
+     * This method {@code addManual(String type)} creates a chain
+     * of user polls to manually add models to the program
+     *
+     * @param type  Type of models to be added
+     * @param count Count of models to be added
+     */
     private void addManual(String type, int count) {
         for (int i = 1; i <= count; ) {
             System.out.printf("=== Ввод данных %s №%d ===\n", type, i);
@@ -152,6 +193,19 @@ public class ConsoleUI {
         System.out.println(response);
     }
 
+    private void reset() {
+        String type = dataRequester.getType();
+        if (type == null)
+            return;
+
+        reset(type);
+    }
+
+    private void reset(String type) {
+        String response = actionsContainer.get(ActionType.RESET_COLLECTION).doing(new HashMap<>(Map.of("type", type)));
+        System.out.println(response);
+    }
+
     private void sort() {
         String response = actionsContainer.get(ActionType.SORT_BASE).doing(null);
         System.out.println(response);
@@ -184,6 +238,13 @@ public class ConsoleUI {
                         print();
                     } else if (command_args.length == 2) {
                         print(command_args[1]);
+                    }
+                }
+                case "reset" -> {
+                    if (command_args.length == 1) {
+                        reset();
+                    } else if (command_args.length == 2) {
+                        reset(command_args[1]);
                     }
                 }
                 case "sort" -> sort();

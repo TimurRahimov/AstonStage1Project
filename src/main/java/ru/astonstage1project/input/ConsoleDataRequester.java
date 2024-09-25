@@ -8,6 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * The {@code ConsoleDataRequester} class
+ * implements the execution and processing
+ * of small repeatable console operations when
+ * interacting with the user
+ */
 public class ConsoleDataRequester {
     private final Scanner scanner;
 
