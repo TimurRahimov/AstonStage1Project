@@ -47,6 +47,17 @@
 ![Интерфейс](doc/Architecture.drawio.png)
 
 
+### Технологии.
+
+- [Java]
+- [Maven]
+- [gson]
+
+Для сборки и запуска приложения необходимы установленные на ПК 
+
+- openjdk version 21+
+- Apache Maven 3.6+
+
 ### Описание.
 При проектировании заданных моделей использовался шаблон Builder.
 
@@ -104,3 +115,11 @@ java -cp "target/AstonStage1Project-1.0-SNAPSHOT.jar;target/dependency/*" ru.ast
 	{"sex":"male","age":32,"surname":"Иванов"}
 ]
 ```
+
+### Авторы
+- [Тимур Рахимов]
+- [Дмитрий Храпов]
+
+[//]: #
+  [Тимур Рахимов]: <https://github.com/TimurRahimov>
+  [Дмитрий Храпов]: <https://github.com/hrapovd1>
