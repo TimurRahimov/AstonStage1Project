@@ -28,9 +28,10 @@ public class App {
         app.addAction(ActionType.MANUAL_DATA, new ManualFeel(app.storage));
         app.addAction(ActionType.SORT_BASE, new BaseSort(app.storage));
         app.addAction(ActionType.FIND, new FindBinary(app.storage));
-        app.addAction(ActionType.SORT_EXTRA, new BaseSort(app.storage));
+        app.addAction(ActionType.SORT_EXTRA, new ExtraSort(app.storage));
         app.addAction(ActionType.PRINT_COLLECTION, new PrintCollection(app.storage));
         app.addAction(ActionType.RESET_COLLECTION, new ResetAction(app.storage));
+        app.addAction(ActionType.SHUFFLE_COLLECTION, new ShuffleCollection(app.storage));
 
         app.run();
     }

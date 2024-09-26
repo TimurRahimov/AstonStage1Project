@@ -6,7 +6,7 @@ import ru.astonstage1project.storage.Storage;
 import ru.astonstage1project.util.TimSort;
 
 public class BaseSort implements Action{
-	private Storage storage;
+	private final Storage storage;
 
 	public BaseSort(Storage storage) {
 		this.storage = storage;
@@ -21,6 +21,6 @@ public class BaseSort implements Action{
 	@Override
 	public String doing(Map<String,String> params) {
 		this.sort();
-		return "";
+		return "=== Коллекции успешно отсортированы ===";
 	}
 }

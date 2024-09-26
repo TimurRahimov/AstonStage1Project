@@ -13,7 +13,7 @@ import ru.astonstage1project.storage.Storage;
 import ru.astonstage1project.util.Search;
 
 public class FindBinary implements Action {
-    private Storage storage;
+    private final Storage storage;
 
     public FindBinary(Storage storage) {
         this.storage = storage;

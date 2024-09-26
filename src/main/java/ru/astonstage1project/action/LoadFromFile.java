@@ -2,6 +2,7 @@ package ru.astonstage1project.action;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.io.FileReader;
@@ -11,9 +12,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import ru.astonstage1project.exception.ValidationError;
-import ru.astonstage1project.model.Animal;
-import ru.astonstage1project.model.Barrel;
-import ru.astonstage1project.model.Human;
+import ru.astonstage1project.mapper.AnimalMapper;
+import ru.astonstage1project.mapper.BarrelMapper;
+import ru.astonstage1project.mapper.HumanMapper;
 import ru.astonstage1project.storage.Storage;
 
 public class LoadFromFile implements Action {
@@ -29,22 +30,26 @@ public class LoadFromFile implements Action {
         String extension = path.substring(path.lastIndexOf('.') + 1).toLowerCase();
 
         if (extension.equals("json")) {
-            switch (type) {
-                case "animal" -> storage.add(loadJSON(Animal.class, path));
-                case "barrel" -> storage.add(loadJSON(Barrel.class, path));
-                case "human" -> storage.add(loadJSON(Human.class, path));
-            }
-        } else if (extension.equals("csv")) {
-            loadCSV(type, path);
+            storage.add(loadJSON(type, path));
         }
     }
 
-    private <T> List<Object> loadJSON(Class<T> type, String path) throws ValidationError {
+    private List<Object> loadJSON(String type, String path) throws ValidationError {
         Gson gson = new Gson();
-        Type objectsType = TypeToken.getParameterized(List.class, type).getType();
+        Type anotherType = new TypeToken<ArrayList<Map<String, String>>>() {
+        }.getType();
 
         try (FileReader reader = new FileReader(path)) {
-            return gson.fromJson(reader, objectsType);
+            List<Map<String, String>> list = gson.fromJson(reader, anotherType);
+            List<Object> resultList = new ArrayList<>();
+            for (Map<String, String> map : list) {
+                switch (type) {
+                    case "animal" -> resultList.add(AnimalMapper.fromMap(map));
+                    case "barrel" -> resultList.add(BarrelMapper.fromMap(map));
+                    case "human" -> resultList.add(HumanMapper.fromMap(map));
+                }
+            }
+            return resultList;
         } catch (JsonSyntaxException e) {
             throw new ValidationError("Некорректный формат записи JSON-файла");
         } catch (IOException e) {
@@ -52,16 +57,12 @@ public class LoadFromFile implements Action {
         }
     }
 
-    private void loadCSV(String type, String path) {
-
-    }
-
     @Override
     public String doing(Map<String, String> params) {
         try {
             this.load(params);
         } catch (ValidationError e) {
-            return e.getMessage();
+            return "-- Ошибка: " + e.getMessage();
         }
         return "Объекты из файла успешно добавлены";
     }

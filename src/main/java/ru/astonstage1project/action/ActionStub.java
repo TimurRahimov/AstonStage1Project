@@ -6,10 +6,8 @@ import java.util.Map;
 import ru.astonstage1project.storage.Storage;
 
 public class ActionStub implements Action {
-    private Storage storage;
 
     public ActionStub(Storage storage) {
-        this.storage = storage;
     }
 
     @Override

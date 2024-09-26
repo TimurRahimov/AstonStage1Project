@@ -19,7 +19,7 @@ public class ResetAction implements Action {
         }
         String type = params.get("type");
         this.storage.reset(type);
-        return "";
+        return "=== Коллекция " + type + " успешно очищена ===";
     }
 
 }
