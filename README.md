@@ -28,3 +28,75 @@
 
 ### Сортировка:
 * **TimSort**
+
+# Решение.
+
+[![asciicast](https://asciinema.org/a/mX4Uydp21au66gS7A6DgP8B1F.svg)](https://asciinema.org/a/mX4Uydp21au66gS7A6DgP8B1F)
+
+Проект реализован на основе трех-слойной архитектуры:
+
+* Интерфейс
+* Средний слой (логика)
+* Хранилище
+
+
+![Интерфейс](doc/Architecture.drawio.png)
+
+
+### Описание.
+При проектировании заданных моделей использовался шаблон Builder.
+
+Для регистрации действий (actions/ callback) на запросы пользователя
+использовался шаблон Strategy.
+
+
+### Сборка.
+Находясь в каталоге проекта, выполнить в консоли:
+
+```
+mvn package
+```
+
+### Запуск.
+Находясь в каталоге проекта, выполнить в консоли:
+
+Linux:
+
+```
+java -cp "target/AstonStage1Project-1.0-SNAPSHOT.jar:target/dependency/*" ru.astonstage1project.App
+```
+
+Windows:
+
+```
+java -cp "target/AstonStage1Project-1.0-SNAPSHOT.jar;target/dependency/*" ru.astonstage1project.App
+```
+
+### Формат файлов для загрузки данных.
+
+Данные коллекций так же можно загрузить из файла в формате json.
+
+При этом нужно учитывать, что имя файла должно заканчиваться расширением ".json"
+
+А содержимое должно быть в таком формате:
+
+для Animal
+```
+[
+	{"species":"someSpecies","eyescolor":"green","wool":true}
+]
+```
+
+для Barrel
+```
+[
+	{"volume":32,"storedmaterial":"wood","barrelMaterial":"oil"}
+]
+```
+
+для Human
+```
+[
+	{"sex":"male","age":32,"surname":"Иванов"}
+]
+```
