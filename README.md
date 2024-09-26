@@ -31,11 +31,11 @@
 
 # Решение.
 
-<script
-	src="https://asciinema.org/a/mX4Uydp21au66gS7A6DgP8B1F.js"
-	id="asciicast-mX4Uydp21au66gS7A6DgP8B1F"
-	async="true">
-</script>
+<p align="center">
+	<a href="https://asciinema.org/a/mX4Uydp21au66gS7A6DgP8B1F">
+	<img src="https://asciinema.org/a/mX4Uydp21au66gS7A6DgP8B1F.png" width="800"></image>
+	</a>
+</p>
 
 Проект реализован на основе трех-слойной архитектуры:
 
