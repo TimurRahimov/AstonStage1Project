@@ -31,6 +31,8 @@ public class LoadFromFile implements Action {
 
         if (extension.equals("json")) {
             storage.add(loadJSON(type, path));
+        } else {
+            throw new ValidationError("Данный тип файла не поддерживается (требуется формат JSON)");
         }
     }
 
