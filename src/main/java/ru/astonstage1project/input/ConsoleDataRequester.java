@@ -56,7 +56,7 @@ public class ConsoleDataRequester {
     }
 
     public String getFilePath() {
-        System.out.print("Введите путь к файлу: ");
+        System.out.print("Введите путь к JSON-файлу: ");
         String command = scanner.nextLine().strip().toLowerCase();
         if (validateFilePath(command))
             return command;
