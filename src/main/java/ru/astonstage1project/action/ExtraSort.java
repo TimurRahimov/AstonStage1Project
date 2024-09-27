@@ -1,9 +1,9 @@
 package ru.astonstage1project.action;
 
-import java.util.Collections;
 import java.util.Map;
 
 import ru.astonstage1project.storage.Storage;
+import ru.astonstage1project.util.ExtraTimSort;
 
 public class ExtraSort implements Action{
 	private final Storage storage;
@@ -13,9 +13,9 @@ public class ExtraSort implements Action{
 	}
 
 	private void sort() {
-		Collections.sort(storage.animals);
-		Collections.sort(storage.barrels);
-		Collections.sort(storage.humans);
+		ExtraTimSort.extraSort(storage.animals, null);
+		ExtraTimSort.extraSort(storage.barrels, b -> b.getVolume() % 2 == 0);
+		ExtraTimSort.extraSort(storage.humans, h -> h.getAge() % 2 == 0);
 	}
 
 	// private <T> void extraSort(List<T> list) {
@@ -24,6 +24,6 @@ public class ExtraSort implements Action{
 	@Override
 	public String doing(Map<String,String> params) {
 		this.sort();
-		return "";
+		return "Отсортированы элементы с четными полями.";
 	}
 }
