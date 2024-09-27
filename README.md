@@ -32,8 +32,8 @@
 # Решение.
 
 <p align="center">
-	<a href="https://asciinema.org/a/mX4Uydp21au66gS7A6DgP8B1F">
-	<img src="https://asciinema.org/a/mX4Uydp21au66gS7A6DgP8B1F.png" width="800"></image>
+	<a href="https://asciinema.org/a/Ty2itIStUqMuJzmmvrBAQ1XbZ">
+	<img src="https://asciinema.org/a/Ty2itIStUqMuJzmmvrBAQ1XbZ.png" width="800"></image>
 	</a>
 </p>
 
